@@ -13,5 +13,15 @@ In the future this project may become a submodule in the [HMI_Development](https
 
 ## First steps:
 - Installing SQLite3 in a Linux environment:
-    - sudo apt install sqlite3
-    
+    - ~$ sudo apt install sqlite3
+    - ~$ sqlite3 test.db
+    - sqlite3-> CREATE TABLE measurements (
+                time    REAL,
+                channel TEXT,
+                value   REAL
+                );
+    - Database file now has a structure
+        - time → when measurement happened (Unix time)
+        - channel → sensor name
+        - value → number
+- Write a python script to write to test.db file
