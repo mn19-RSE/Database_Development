@@ -12,6 +12,11 @@ In the future this project may become a submodule in the [HMI_Development](https
 
 
 ## First steps:
+
+### Windows:
+- [Installing SQLite3 on Windows](https://sqldocs.org/install-sqlite3-on-windows/)
+
+### Linux
 - Installing SQLite3 in a Linux environment:
     - ~$ sudo apt install sqlite3
     - ~$ sqlite3 test.db
