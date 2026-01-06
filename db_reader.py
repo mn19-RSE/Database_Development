@@ -1,3 +1,5 @@
+# May no longer work with added db info
+
 import sqlite3
 
 conn = sqlite3.connect("test.db")

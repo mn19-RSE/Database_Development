@@ -6,23 +6,23 @@ import random
 conn = sqlite3.connect("test.db")
 cur = conn.cursor()
 
+channels = {
+    "temp":      ("C", lambda: 20 + random.uniform(-1, 1)),
+    "pressure":  ("kPa", lambda: 100 + random.uniform(-2, 2)),
+    "humidity":  ("%", lambda: 45 + random.uniform(-5, 5)),
+}
+
 print("Writing data... Ctrl+C to stop")
 
 try:
     while True:
         t = time.time()
 
-        # Fake sensor data
-        data = [
-            ("temp", 20 + random.uniform(-1, 1)),
-            ("pressure", 100 + random.uniform(-2, 2)),
-            ("humidity", 45 + random.uniform(-5, 5)),
-        ]
-
-        for ch, val in data:
+        for ch, (unit, gen) in channels.items():
+            val = gen()
             cur.execute(
-                "INSERT INTO measurements VALUES (?, ?, ?)",
-                (t, ch, val)
+                "INSERT INTO measurements (time, channel, value, unit) VALUES (?, ?, ?, ?)",
+                (t, ch, val, unit)
             )
 
         conn.commit()
